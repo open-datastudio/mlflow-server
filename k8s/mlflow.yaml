@@ -31,6 +31,7 @@ spec:
           mlflow server
           --backend-store-uri postgresql://mlflow:mlflow@postgres:5432/mlflow
           --default-artifact-root /mlruns
+          --host 0.0.0.0
         resources:
           requests:
             cpu: "100m"
