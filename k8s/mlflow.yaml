@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: mlflow
+        pod.staroid.com/isolation: dedicated
     spec:
       initContainers:
       - name: mlflow-db-upgrade
@@ -32,13 +33,6 @@ spec:
           --backend-store-uri postgresql://mlflow:mlflow@postgres:5432/mlflow
           --default-artifact-root /mlruns
           --host 0.0.0.0
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "512Mi"
-          limits:
-            cpu: "2"
-            memory: "2048Mi"
         volumeMounts:
           - name: mlflow-artifact-volume
             mountPath: /mlruns
@@ -68,3 +62,4 @@ spec:
   resources:
     requests:
       storage: 20Gi
+---
