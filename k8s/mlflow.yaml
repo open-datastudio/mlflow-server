@@ -11,7 +11,10 @@ spec:
     metadata:
       labels:
         app: mlflow
+        pod.staroid.com/isolation: dedicated
     spec:
+      securityContext:
+        fsGroup: 2000 # To mount mlruns volume with access permission. fyi, 'sandboxed' does not support fsGroup
       initContainers:
       - name: mlflow-db-upgrade
         image: mlflow
@@ -32,13 +35,6 @@ spec:
           --backend-store-uri postgresql://mlflow:mlflow@postgres:5432/mlflow
           --default-artifact-root /mlruns
           --host 0.0.0.0
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "512Mi"
-          limits:
-            cpu: "2"
-            memory: "2048Mi"
         volumeMounts:
           - name: mlflow-artifact-volume
             mountPath: /mlruns
@@ -68,3 +64,4 @@ spec:
   resources:
     requests:
       storage: 20Gi
+---
