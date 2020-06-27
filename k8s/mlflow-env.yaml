@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mlflow-env
+  labels:
+    # see https://docs.staroid.com/project/dependency.html
+    dependency.staroid.com/export: mlflow-env
+data:
+  MLFLOW_TRACKING_URI: "mlflow.{{.Namespace}}"

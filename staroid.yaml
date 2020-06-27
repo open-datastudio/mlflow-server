@@ -1,0 +1,9 @@
+apiVersion: beta/v1
+build:
+  skaffold:
+    file: skaffold.yaml
+ingress:
+  - serviceName: mlflow
+    port: 5000
+deploy:
+  implements: open-datastudio/mlflow-server
