@@ -13,6 +13,8 @@ spec:
         app: mlflow
         pod.staroid.com/isolation: dedicated
     spec:
+      securityContext:
+        fsGroup: 2000 # To mount mlruns volume with access permission. fyi, 'sandboxed' does not support fsGroup
       initContainers:
       - name: mlflow-db-upgrade
         image: mlflow
