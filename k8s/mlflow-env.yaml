@@ -6,4 +6,6 @@ metadata:
     # see https://docs.staroid.com/project/dependency.html
     dependency.staroid.com/export: mlflow-env
 data:
-  MLFLOW_TRACKING_URI: "mlflow.{{.Namespace}}"
+  MLFLOW_TRACKING_URI: "http://mlflow.{{.Namespace}}:5000"
+  MLFLOW_ARTIFACT_STORE_RSA_PUB: "" # for passwordless sftp access to the artifact. ssh-key-gen.sh will update this field.
+  MLFLOW_ARTIFACT_STORE_RSA_PRI: ""
