@@ -5,10 +5,16 @@ build:
     - image: mlflow
       context: .
       docker:
-        dockerfile: Dockerfile 
+        dockerfile: Dockerfile
+    - image: sftp
+      context: .
+      docker:
+        dockerfile: Dockerfile_sftp
 deploy:
   kubectl:
     manifests:
+      - k8s/mlflow-env.yaml
+      - k8s/sshkeygen.yaml
       - k8s/postgres.yaml
       - k8s/mlflow.yaml
 profiles:

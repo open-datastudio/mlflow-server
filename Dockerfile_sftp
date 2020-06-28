@@ -1,0 +1,19 @@
+FROM ubuntu:18.04
+
+ADD ssh-key-gen.sh /usr/local/bin/
+
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.16.3/bin/linux/amd64/kubectl /usr/bin/kubectl
+RUN chmod +rx /usr/bin/kubectl
+
+RUN apt-get update && apt-get install -y openssh-server && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN groupadd --gid 2000 mlflow && \
+    useradd -ms /bin/bash -d /home/mlflow mlflow --uid 2000 --gid 2000 && \
+    sed -i 's/^UsePAM.*/UsePAM no/' /etc/ssh/sshd_config
+
+# on sftp login, motd requires write permissions on some dir. TODO disable motd
+RUN mkdir -p /run && chown mlflow:mlflow -R /run && \
+    mkdir -p /var/cache && chown mlflow:mlflow -R /var/cache
+
+USER 2000

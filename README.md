@@ -21,3 +21,13 @@ $ skaffold dev --port-forward -p minikube
 ```
 
 and browse `http://localhost:5000`
+
+
+### Clean up
+
+It creates secret `mlflow-ssh-key` dynamically. Skaffold does not remove this one. Clean up resource with
+
+```
+$ kubectl delete secret mlflow-ssh-key
+```
+
