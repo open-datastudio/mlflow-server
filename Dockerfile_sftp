@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y openssh-server && \
     rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --gid 2000 mlflow && \
-    useradd -ms /bin/bash -d /home/mlflow mlflow --uid 2000 --gid 2000
+    useradd -ms /bin/bash -d /home/mlflow mlflow --uid 2000 --gid 2000 && \
+    echo "+:mlflow:ALL" >> /etc/security/access.conf
 
 # on sftp login, motd requires write permissions on some dir. TODO disable motd
 RUN mkdir -p /run && chown mlflow:mlflow -R /run && \
