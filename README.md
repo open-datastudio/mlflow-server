@@ -12,6 +12,11 @@
 [![Run](https://staroid.com/api/run/button.svg)](https://staroid.com/api/run)
 
 
+## Articles
+
+ - [How Open Data Studio Jupyter notebook connects MLflow server](https://medium.com/@leemoonsoo/how-open-data-studio-jupyter-notebook-connects-mlflow-server-e805929322ff?sk=86151b30f48d17a117b2554fd857e425) - step by step instruction how to use with Jupyter notebook and how it works underneath.
+
+
 ## Development
 
 Run locally with [skaffold](https://skaffold.dev) command.
